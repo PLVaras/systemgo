@@ -24,7 +24,12 @@ class Systemgo extends CI_Controller {
 			//Preguntamos si encontro o no datos
 			if($informacion->result())
 			{
-				$this->load->view('bandeja');	
+				$datos=array(
+				'usuarios'=>$this->systemgo_modelo->listarUsuarios(),
+				
+				);
+				$this->load->view('bandeja',$datos);
+					
 			}
 			else
 			{

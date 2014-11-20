@@ -26,6 +26,11 @@ class Systemgo_modelo extends CI_Model {
 		//$sql="select * from login where usuario='$usuario' and clave='$clave'";
 		//$consulta=mysql_query($sql);	
 	}
+	
+	public function listarUsuarios()
+	{
+		return $this->db->query("select * from usuario");
+	}
 
 
 }
