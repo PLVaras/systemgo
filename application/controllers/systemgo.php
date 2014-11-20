@@ -2,30 +2,36 @@
 
 class Systemgo extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
+
+
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('login');
 	}
-		public function vermas()
+	
+	public function validar()
 	{
-		$this->load->view('welcome_message');
+		if($_POST)
+		{
+			//Creamos un vector para pasar uno o muchos datos hacia la BD
+			$datos=array(
+			'usuario'=>$this->input->post('usuario'),
+			'clave'=>$this->input->post('clave'),
+			);
+			//Llamamos a una funcion en la BD que se encargue de verificar la existencia del usuario
+			//
+			$informacion=$this->systemgo_modelo->buscaLogin($datos);
+			//Preguntamos si encontro o no datos
+			if($informacion->result())
+			{
+				$this->load->view('bandeja');	
+			}
+			else
+			{
+				$this->load->view('error');
+			}
+			//segun la accion mando a una pagina o a la otra
+		}
 	}
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

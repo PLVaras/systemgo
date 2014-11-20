@@ -1,0 +1,5 @@
+<?php
+
+?>
+
+BIENVENIDO ALA BANDEJA
